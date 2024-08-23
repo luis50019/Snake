@@ -160,7 +160,7 @@ span {
 
 /* Estilos para el modal */
 .container_modal {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   position: absolute;
   left: 0;
@@ -171,11 +171,11 @@ span {
   place-content: center;
 }
 
-.not-active {
+.not-active{
   display: none;
 }
 
-.modal {
+.modal{
   height: auto;
   width: 80%;
   max-width: 300px; /* Limitar el ancho máximo */
