@@ -22,7 +22,7 @@ body{
 }
 /*Estilos del formulario*/
 .container-register{
-  width: 100vw;
+  width: 90vw;
   height: 75vh ;
   display: grid;
   align-items: start;
