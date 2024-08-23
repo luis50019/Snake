@@ -171,14 +171,14 @@ function snakeMovement() {
     modal.classList.remove('not-active')
     removeButtonEvents()
     window.localStorage.setItem('score',apple.count)
-    window.localStorage.setItem('game',false)
+    // window.localStorage.setItem('game',false)
     nextDirection = ""
   }
   if (!snakeRuning) {
     modal.classList.remove('not-active')
     removeButtonEvents()
     window.localStorage.setItem('score',apple.count)
-    window.localStorage.setItem('game',false)
+    // window.localStorage.setItem('game',false)
     nextDirection = ""
 
   }
@@ -201,25 +201,7 @@ function draw() {
 
 function gameLoop() {
   punctuation.innerHTML = `Score: ${apple.count}`
-  const game =window.localStorage.getItem('game')//false true
-  initialEvents()
-  if(game.length == 4){
-    container_form.classList.add('not-active')
-    modal.classList.add('not-active')
-    draw()
-
-  }//refresh
-  if(game.length == 7){
-    snake = [
-      { "y": 12, "x": 1 },
-      { "y": 13, "x": 1 },
-      { "y": 14, "x": 1 }
-    ];
-    window.localStorage.setItem('game',true)
-    container_form.classList.add('not-active')
-    modal.classList.add('not-active')
-    draw()
-  }
+  draw()
 }
-
+initialEvents()
 setInterval(gameLoop, 100)

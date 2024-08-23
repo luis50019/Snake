@@ -15,12 +15,7 @@ btnPlay.addEventListener('click', () => {
   setTimeout(() => {
     modal.classList.add('not-active');
     // Verificar si realmente deseas recargar la página
-    window.snake = [
-      { "y": 12, "x": 1 },
-      { "y": 13, "x": 1 },
-      { "y": 14, "x": 1 }
-    ];
-    window.localStorage.setItem('game', "refresh")
-
+    window.localStorage.setItem('score',0)
+    window.location.reload()
   }, 200);
 });
