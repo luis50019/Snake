@@ -22,12 +22,13 @@ body{
 }
 /*Estilos del formulario*/
 .container-register{
-  width: 300px;
+  width: 100vw;
   height: 75vh ;
   display: grid;
   align-items: start;
   justify-content: center;
   position: absolute;
+  transform:translateX(-25px) ;
   z-index: 200;
 }
 img{
@@ -83,6 +84,7 @@ canvas{
   border: 5px solid #3b540e;
   border-radius: 15px;
   background-color:#a4c542 ;
+  height: 400px;
 }
 span{
   color: #3b540e;
