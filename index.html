@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>game sneek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div class="container-register" id="container-register">
+      <img src="imagen-portada.png">
+      <form class="form-register" id="form-player">
+        <label for="player">name</label>
+        <input type="text" name="player" id="input-player" placeholder="user1">
+        
+        <span class="menssage-error" id="error-player"></span>
+        
+        <label for="password">password</label>
+        <input type="password" name="password" id="input-password" placeholder="****">
+        <span class="menssage-error" id="error-pasword"></span>
+        <input type="submit" class="btn-submit" id="btn-submit" value="Play">
+      </form>
+    </div>
+    <span id="punctuation" ></span>
+    <canvas></canvas>
+    <div class="container-buttons">
+      <div class="btn-up btn" id="btn-up">></div>
+      <div class="btns-sides">
+        <div class="btn-left btn" id="btn-left">></div>
+        <div class="btn-right btn" id="btn-right">> </div>
+      </div>
+      <div class="btn-down btn" id="btn-down">></div>
+    </div>
+    <div id="modal" class="container_modal not-active">
+      <div class="modal">
+        <span class="modal-title">Players</span>
+        <ul class="modal-list-players">
+        </ul>
+        <span id="modal-score" class="modal-score"></span>
+        <button id="btn-play" class="button-play">PLAY</button>
+      </div>
+    </div>
+  </div>
+  <script src="/form.js"></script>
+  <script type="module" src="/main.js" defer></script>
+  <script src="/modal.js" defer></script>
+</body>
+
+</html>
