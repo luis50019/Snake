@@ -169,12 +169,14 @@ function snakeMovement() {
   if (headCollapse) {
     modal.classList.remove('not-active')
     removeButtonEvents()
-    modal_score.innerHTML = 'Score:'+apple.count
+    modal_score.innerHTML = 'Score:'+apple.count+"hola"
+    return
   }
   if (!snakeRuning) {
     modal.classList.remove('not-active')
     removeButtonEvents()
-    modal_score.innerHTML = 'Score:'+apple.count
+    modal_score.innerHTML = 'Score:'+apple.count+"hola"
+    return
   }
   if (!snakeEating()) {
     snake.unshift(head);
