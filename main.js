@@ -159,29 +159,23 @@ function snakeMovement() {
   const bodySnake = snake.slice(1, snake.length - 1);
   const headCollapse = bodySnake.some((body) => body.x == (head.x) && body.y == head.y)
 
-  if (nextDirection === "ArrowUp" && head.y > 0) {
+  if (nextDirection === "ArrowUp" && head.y > -1) {
     head.y -= speedSnake;
     snakeRuning = true;
-  } else if (nextDirection === "ArrowLeft" && head.x > 0) {
+  } else if (nextDirection === "ArrowLeft" && head.x > -1) {
     head.x -= speedSnake
     snakeRuning = true;
-  } else if (nextDirection === "ArrowRight" && head.x < (BLOCK_WIDTH - 1)) {
+  } else if (nextDirection === "ArrowRight" && head.x < (BLOCK_WIDTH)) {
     head.x += speedSnake;
     snakeRuning = true;
-  } else if (nextDirection === "ArrowDown" && head.y < (BLOCK_HEIGHT - 1)) {
+  } else if (nextDirection === "ArrowDown" && head.y < (BLOCK_HEIGHT)) {
     head.y += speedSnake;
     snakeRuning = true;
   }
-  if (headCollapse) {
+  if (headCollapse || !snakeRuning) {
     modal.classList.remove('not-active')
     removeButtonEvents()
-    modal_score.innerHTML = 'Score:'+apple.count+"hola"
-    return
-  }
-  if (!snakeRuning) {
-    modal.classList.remove('not-active')
-    removeButtonEvents()
-    modal_score.innerHTML = 'Score:'+apple.count+"hola"
+    modal_score.innerHTML = "Score: "+apple.count
     return
   }
   if (!snakeEating()) {
