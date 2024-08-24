@@ -139,8 +139,8 @@ function initialEvents(){
   document.addEventListener('keydown',handleKeyDown);
   btnPlay.addEventListener('click', () => {
     modal.classList.add('not-active');
-    alert('click')
     window.localStorage.setItem('score', 0)
+    window.location.reload()
   });
 }
 
