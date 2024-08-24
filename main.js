@@ -172,14 +172,14 @@ function snakeMovement() {
     removeButtonEvents()
     window.localStorage.setItem('score',apple.count)
     // window.localStorage.setItem('game',false)
-    nextDirection = ""
+    // nextDirection = ""
   }
   if (!snakeRuning) {
     modal.classList.remove('not-active')
     removeButtonEvents()
     window.localStorage.setItem('score',apple.count)
     // window.localStorage.setItem('game',false)
-    nextDirection = ""
+    // nextDirection = ""
 
   }
   if (!snakeEating()) {
