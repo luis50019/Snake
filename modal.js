@@ -1,17 +1,6 @@
 const btnPlay = document.getElementById('btn-play');
 const modalScore = document.getElementById('modal-score');
 
-function showModal() {
-  if (modal.classList.length == 1) {
-    const modal = document.getElementById('modal');
-    modalScore.innerHTML = 'Score ' + localStorage.getItem('score')
-    return
-  } else {
-    window.requestAnimationFrame(showModal)
-  }
-}
-showModal();
-
 btnPlay.addEventListener('click', () => {
   modal.classList.add('not-active');
   alert('click')
