@@ -17,3 +17,9 @@ btnPlay.addEventListener('click', () => {
   window.localStorage.setItem('score', 0)
   // window.location.reload()
 });
+btnPlay.addEventListener('touchstart', () => {
+  modal.classList.add('not-active');
+  // Verificar si realmente deseas recargar la página
+  window.localStorage.setItem('score', 0)
+  // window.location.reload()
+});
