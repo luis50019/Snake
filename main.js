@@ -6,7 +6,8 @@ const btnRight = document.getElementById('btn-right')
 const btnDown = document.getElementById('btn-down')
 const ctx = canvas.getContext('2d');
 const modal_score = document.getElementById('modal-score')
-
+const btnPlay = document.getElementById('btn-play');
+const modal = document.getElementById('modal')
 
 // Variables de los controles
 let nextDirection = ''
@@ -136,6 +137,11 @@ function initialEvents(){
   btnLeft.addEventListener('click', handleLeft);
   btnRight.addEventListener('click', handleRight);
   document.addEventListener('keydown',handleKeyDown);
+  btnPlay.addEventListener('click', () => {
+    modal.classList.add('not-active');
+    alert('click')
+    window.localStorage.setItem('score', 0)
+  });
 }
 
 // Desactivar los eventos

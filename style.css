@@ -209,7 +209,6 @@ span{
   font-style: normal;
   margin-top: 20px;
   color: #000;
-  cursor: pointer;
   animation: grow-shrink 1s infinite;
 }
 .modal-score{
