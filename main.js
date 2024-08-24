@@ -138,7 +138,7 @@ function initialEvents(){
   btnRight.addEventListener('click', handleRight);
   document.addEventListener('keydown',handleKeyDown);
   btnPlay.addEventListener('click', () => {
-    modal.classList.add('not-active');
+    // modal.classList.add('not-active');
     window.localStorage.setItem('score', 0)
     window.location.reload()
   });
@@ -202,8 +202,11 @@ function draw() {
 }
 
 function gameLoop() {
+
   punctuation.innerHTML = `Score: ${apple.count}`
   draw()
 }
 initialEvents()
 setInterval(gameLoop, 100)
+
+
