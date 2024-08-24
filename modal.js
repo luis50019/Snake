@@ -1,9 +1,9 @@
 const btnPlay = document.getElementById('btn-play');
 const modalScore = document.getElementById('modal-score');
-const modal = document.getElementById('modal');
 
 function showModal() {
   if (modal.classList.length == 1) {
+    const modal = document.getElementById('modal');
     modalScore.innerHTML = 'Score ' + localStorage.getItem('score')
   } else {
     window.requestAnimationFrame(showModal)
