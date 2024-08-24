@@ -5,12 +5,12 @@ const btnLeft = document.getElementById('btn-left')
 const btnRight = document.getElementById('btn-right')
 const btnDown = document.getElementById('btn-down')
 const ctx = canvas.getContext('2d');
-const modal = document.getElementById('modal')
-const container_form = document.getElementById('container-register');
+// const modal = document.getElementById('modal')
+// const container_form = document.getElementById('container-register');
 
 // Variables de los controles
 let nextDirection = ''
-window.localStorage.setItem('game',false)
+// window.localStorage.setItem('game',false)
 // Inicializamos el tamaño de cada cuadro de la pantalla
 const BLOCK_SIZE = 15; // Tamaño de cada bloque en píxeles
 const BLOCK_HEIGHT = 17; // Número de bloques en altura

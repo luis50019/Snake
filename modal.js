@@ -5,6 +5,7 @@ function showModal() {
   if (modal.classList.length == 1) {
     const modal = document.getElementById('modal');
     modalScore.innerHTML = 'Score ' + localStorage.getItem('score')
+    return
   } else {
     window.requestAnimationFrame(showModal)
   }
