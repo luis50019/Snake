@@ -5,12 +5,12 @@ const btnLeft = document.getElementById('btn-left')
 const btnRight = document.getElementById('btn-right')
 const btnDown = document.getElementById('btn-down')
 const ctx = canvas.getContext('2d');
-const modal = document.getElementById('modal')
-const container_form = document.getElementById('container-register');
+// const modal = document.getElementById('modal')
+// const container_form = document.getElementById('container-register');
 
 // Variables de los controles
 let nextDirection = ''
-window.localStorage.setItem('game',false)
+// window.localStorage.setItem('game',false)
 // Inicializamos el tamaño de cada cuadro de la pantalla
 const BLOCK_SIZE = 15; // Tamaño de cada bloque en píxeles
 const BLOCK_HEIGHT = 17; // Número de bloques en altura
@@ -171,15 +171,15 @@ function snakeMovement() {
     modal.classList.remove('not-active')
     removeButtonEvents()
     window.localStorage.setItem('score',apple.count)
-    window.localStorage.setItem('game',false)
-    nextDirection = ""
+    // window.localStorage.setItem('game',false)
+    // nextDirection = ""
   }
   if (!snakeRuning) {
     modal.classList.remove('not-active')
     removeButtonEvents()
     window.localStorage.setItem('score',apple.count)
-    window.localStorage.setItem('game',false)
-    nextDirection = ""
+    // window.localStorage.setItem('game',false)
+    // nextDirection = ""
 
   }
   if (!snakeEating()) {
@@ -201,25 +201,7 @@ function draw() {
 
 function gameLoop() {
   punctuation.innerHTML = `Score: ${apple.count}`
-  const game =window.localStorage.getItem('game')//false true
-  initialEvents()
-  if(game.length == 4){
-    container_form.classList.add('not-active')
-    modal.classList.add('not-active')
-    draw()
-
-  }//refresh
-  if(game.length == 7){
-    snake = [
-      { "y": 12, "x": 1 },
-      { "y": 13, "x": 1 },
-      { "y": 14, "x": 1 }
-    ];
-    window.localStorage.setItem('game',true)
-    container_form.classList.add('not-active')
-    modal.classList.add('not-active')
-    draw()
-  }
+  draw()
 }
-
+initialEvents()
 setInterval(gameLoop, 100)
