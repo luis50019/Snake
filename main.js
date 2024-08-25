@@ -165,10 +165,10 @@ function snakeMovement() {
   } else if (nextDirection === "ArrowLeft" && head.x > -1) {
     head.x -= speedSnake
     snakeRuning = true;
-  } else if (nextDirection === "ArrowRight" && head.x < (BLOCK_WIDTH)) {
+  } else if (nextDirection === "ArrowRight" && head.x < (BLOCK_WIDTH -1)) {
     head.x += speedSnake;
     snakeRuning = true;
-  } else if (nextDirection === "ArrowDown" && head.y < (BLOCK_HEIGHT)) {
+  } else if (nextDirection === "ArrowDown" && head.y < (BLOCK_HEIGHT -1)) {
     head.y += speedSnake;
     snakeRuning = true;
   }

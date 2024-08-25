@@ -9,3 +9,4 @@ Extras
 [] musica
 [listo] registro del jugador
 [listo] poder reiniciar el juego al morir
+[] quitar el reload
