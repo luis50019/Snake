@@ -9,6 +9,7 @@ const modal_score = document.getElementById('modal-score')
 const btnPlay = document.getElementById('btn-play');
 const modal = document.getElementById('modal')
 
+window.localStorage.setItem('game', 'play')
 // Variables de los controles
 let nextDirection = ''
 // Inicializamos el tamaño de cada cuadro de la pantalla
@@ -33,7 +34,16 @@ var snake = [
   { "y": 13, "x": 1 },
   { "y": 14, "x": 1 }
 ];
+function resetGame() {
 
+  snake = [
+    { "y": 12, "x": 1 },
+    { "y": 13, "x": 1 },
+    { "y": 14, "x": 1 }
+  ];
+  nextDirection = '';
+  window.localStorage.setItem('game','play')
+}
 function snakeEating() {
   const head = { ...snake[0] };
 
@@ -56,8 +66,8 @@ function snakeEating() {
   return false;
 }
 
-function drawApple() {
-  if (snakeEating()) {
+function drawApple(calculatePosition = false) {
+  if (snakeEating() || calculatePosition) {
     const random_x = Math.floor((Math.random()) * BLOCK_WIDTH);
     const random_y = Math.floor((Math.random()) * BLOCK_HEIGHT);
     apple.x = random_x;
@@ -66,10 +76,10 @@ function drawApple() {
   }
   ctx.beginPath()//indicamos que vamos a comenzar a dibujar
   ctx.fillStyle = '#6f7c41'
-  ctx.arc(apple.x+.5,apple.y+.5, .3, 0, Math.PI * 2) //indicamos que sera un circulo
+  ctx.arc(apple.x + .5, apple.y + .5, .3, 0, Math.PI * 2) //indicamos que sera un circulo
   ctx.fill()
   ctx.closePath() //evita mezclar trasados
-  
+
 }
 
 function drawBoard() {
@@ -86,10 +96,10 @@ function drawBoard() {
 
 function drawSnake() {
   const color1 = "#4e5e47";
-  snake.forEach(({y,x})=>{
+  snake.forEach(({ y, x }) => {
     ctx.fillStyle = color1;
-    ctx.fillRect(x,y,1,1)
-    
+    ctx.fillRect(x, y, 1, 1)
+
   })
 }
 // Definir las funciones manejadoras
@@ -131,16 +141,16 @@ const handleKeyDown = event => {
 }
 
 // Añadir los eventos
-function initialEvents(){
+function initialEvents() {
   btnUP.addEventListener('click', handleUp);
   btnDown.addEventListener('click', handleDown);
   btnLeft.addEventListener('click', handleLeft);
   btnRight.addEventListener('click', handleRight);
-  document.addEventListener('keydown',handleKeyDown);
+  document.addEventListener('keydown', handleKeyDown);
   btnPlay.addEventListener('click', () => {
-    // modal.classList.add('not-active');
+    modal.classList.add('not-active');
     window.localStorage.setItem('score', 0)
-    window.location.reload()
+    window.localStorage.setItem('game','refresh')
   });
 }
 
@@ -150,7 +160,7 @@ function removeButtonEvents() {
   btnDown.removeEventListener('click', handleDown);
   btnLeft.removeEventListener('click', handleLeft);
   btnRight.removeEventListener('click', handleRight);
-  document.removeEventListener('keydown',handleKeyDown)
+  document.removeEventListener('keydown', handleKeyDown)
 }
 
 function snakeMovement() {
@@ -165,17 +175,18 @@ function snakeMovement() {
   } else if (nextDirection === "ArrowLeft" && head.x > -1) {
     head.x -= speedSnake
     snakeRuning = true;
-  } else if (nextDirection === "ArrowRight" && head.x < (BLOCK_WIDTH -1)) {
+  } else if (nextDirection === "ArrowRight" && head.x < (BLOCK_WIDTH - 1)) {
     head.x += speedSnake;
     snakeRuning = true;
-  } else if (nextDirection === "ArrowDown" && head.y < (BLOCK_HEIGHT -1)) {
+  } else if (nextDirection === "ArrowDown" && head.y < (BLOCK_HEIGHT - 1)) {
     head.y += speedSnake;
     snakeRuning = true;
   }
   if (headCollapse || !snakeRuning) {
     modal.classList.remove('not-active')
     removeButtonEvents()
-    modal_score.innerHTML = "Score: "+apple.count
+    modal_score.innerHTML = "Score: " + apple.count
+    window.localStorage.setItem('game', 'stop')
     return
   }
   if (!snakeEating()) {
@@ -201,6 +212,14 @@ function gameLoop() {
   draw()
 }
 initialEvents()
-setInterval(gameLoop, 100)
-
-
+setInterval(() => {
+  if (window.localStorage.getItem('game') == 'play') {
+    gameLoop()
+  }
+  if (window.localStorage.getItem('game') == 'refresh') {
+    resetGame()
+    drawApple(true)
+    gameLoop()
+  }
+  initialEvents()
+}, 100)
