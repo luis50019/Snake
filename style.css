@@ -6,9 +6,12 @@
 }
 
 @keyframes grow-shrink {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
@@ -20,32 +23,65 @@ body {
   background-color: #333;
   display: grid;
   place-content: center;
-  overflow-x: hidden; /* Evitar desbordamiento horizontal */
+  overflow-x: hidden;
+  /* Evitar desbordamiento horizontal */
 }
 
 /* Estilos del formulario */
-.container-register {
-  width: 90%;
-  max-width: 400px; /* Limitar el ancho máximo */
+.container-form-register {
+  width: 70%;
+  max-width: 400px;
+  /* Limitar el ancho máximo */
   height: auto;
   display: grid;
-  align-items: start;
-  justify-content: center;
+  place-content: center;
   position: absolute;
-  transform: translateX(-2%);
+  transform: translateY(10%);
   z-index: 200;
 }
 
-img {
-  width: 50%;
-  max-width: 180px; /* Limitar el ancho máximo */
-  transform: translateY(30px);
-}
-
 .form-register {
+  position: relative;
   display: flex;
   flex-direction: column;
-  transform: translateY(-100px);
+  gap: 10px;
+  align-items: center;
+}
+
+.button-submit {
+  animation: grow-shrink 2s infinite;
+  width: 50%;
+  max-width: 100px;
+  /* Limitar el ancho máximo */
+  margin: 15px auto 0;
+  color: #fff;
+  background-color: #3a5002;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  border-bottom: 5px solid #000;
+}
+
+.form-register-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.error_message {
+  /* border: 1px solid #000; */
+  height: 1.5em;
+  color: #f00;
+  font-family: system-ui;
+  padding-left: 3%;
+  font-size: 15px;
+}
+
+.message_succeful {
+  height: 1.5em;
+  color: #001aff;
+  font-family: system-ui;
+  padding-left: 3%;
+  font-size: 15px;
 }
 
 label {
@@ -65,18 +101,6 @@ input {
   padding-left: 5px;
 }
 
-.btn-submit {
-  animation: grow-shrink 2s infinite;
-  width: 50%;
-  max-width: 100px; /* Limitar el ancho máximo */
-  margin: 15px auto 0;
-  color: #fff;
-  background-color: #3a5002;
-  font-family: "Jersey 10", sans-serif;
-  font-weight: 400;
-  font-size: 1.5rem;
-  border-bottom: 5px solid #000;
-}
 
 .menssage-error {
   font-size: 1rem;
@@ -92,7 +116,8 @@ canvas {
   border-radius: 15px;
   background-color: #a4c542;
   width: 100%;
-  max-width: 400px; /* Limitar el ancho máximo */
+  max-width: 400px;
+  /* Limitar el ancho máximo */
   height: auto;
   border: 7px solid #1e2c04;
 }
@@ -112,7 +137,8 @@ canvas {
   background-color: #6d9725;
   border: 3px solid #000;
   width: 90%;
-  max-width: 500px; /* Limitar el ancho máximo */
+  max-width: 500px;
+  /* Limitar el ancho máximo */
   height: auto;
   border-radius: 15px;
   display: flex;
@@ -130,7 +156,7 @@ canvas {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  gap: 2px ;
+  gap: 2px;
 }
 
 .btns-sides {
@@ -144,13 +170,14 @@ canvas {
   border: 2px solid #3a5002;
   border-radius: 15px;
   font-family: "Jersey 10", sans-serif;
-  display: grid,;
+  display: grid, ;
   place-content: center;
   font-weight: 400;
   width: 3rem;
-  border-bottom: 10px solid  #000;
+  border-bottom: 10px solid #000;
 }
-.arrow{
+
+.arrow {
   color: #000;
   font-size: 2rem;
   /* border: 1px solid #fff; */
@@ -191,17 +218,19 @@ canvas {
 }
 
 .modal {
-  height: 180%;
-  width: 150%;
-  max-width: 300px; /* Limitar el ancho máximo */
+  height: 110%;
+  width: 200%;
+  max-width: 300px;
+  /* Limitar el ancho máximo */
   border: 2px solid #222;
   border-radius: 15px;
   background: #99a84f;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 10%;
   align-items: center;
   flex-direction: column;
-  transform: translateX(-50px) translateY(-120px);
+  transform: translateX(-60px) translateY(-20px);
 }
 
 .modal-title {
@@ -216,7 +245,8 @@ canvas {
   border-radius: 15px;
   width: 70%;
   height: auto;
-  max-height: 250px; /* Limitar la altura máxima */
+  max-height: 250px;
+  /* Limitar la altura máxima */
   list-style: none;
   padding-top: 10px;
 }
@@ -245,20 +275,65 @@ canvas {
   text-wrap: wrap;
 }
 
+.modal-players {
+  font-size: 2rem;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 600;
+  color: #636907;
+  letter-spacing: 2px;
+}
+
+.modal-ranking-players {
+  background-color: #89a752;
+  width: 60%;
+  height: 10em;
+  overflow-y: auto; /* Asegúrate de que sea 'auto' para mostrar el scroll solo cuando sea necesario */
+  list-style: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.modal-ranking-players>li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  padding: 0% 5%;
+}
+.modal-ranking-players::-webkit-scrollbar{
+  width: 3px;
+  background-color:transparent;
+  border-radius: 20px;
+}
+.modal-ranking-players::-webkit-scrollbar-thumb  {
+  background-color: #1f641c;
+  border-radius: 6px;
+}
+
+.modal-ranking-players>li:nth-of-type(2n) {
+  background-color: #7d974c;
+}
+/*estilos para la barra de scroll*/
 
 /* Media Queries */
 @media (max-width: 768px) {
+
   .container-register,
   .container,
-  .container_modal{
-    width: 95%;
+  .container_modal {
+    width: 100%;
   }
-  .modal{
-    width: 200px;
-    height: 250px;
+
+  .modal {
+    width: 400px;
+    height: 400px;
     justify-content: center;
     align-items: center;
     transform: translateX(0px) translateY(0px);
+  }
+  .container-form-register{
+    transform: translateY(20%);
   }
   .btn {
     font-size: 25px;
@@ -266,13 +341,16 @@ canvas {
     width: 6rem;
     height: 5rem;
   }
-  .btn>span{
+
+  .btn>span {
     font-size: 60px;
   }
+
   .container-buttons {
     gap: 10px;
     width: 100%;
   }
+
   .btns-sides {
     display: flex;
     justify-content: space-around;
@@ -284,7 +362,25 @@ canvas {
     font-size: 2rem;
   }
 
+  .modal-ranking-players {
+    overflow: auto ;
+    background-color: #89a752;
+    width: 60%;
+    max-height: 15em;
+    list-style: none;
+  }
+
+  .modal-ranking-players>li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    padding: 0% 5%;
+  }
+
   .button-play {
     font-size: 1.5rem;
+    margin-bottom: 5%;
   }
 }

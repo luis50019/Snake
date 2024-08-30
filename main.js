@@ -1,15 +1,67 @@
 const canvas = document.querySelector('canvas');
-const punctuation = document.getElementById('punctuation');
+const punctuation = document.getElementById('punctuation')
+//buttons for the game
 const btnUP = document.getElementById('btn-up')
 const btnLeft = document.getElementById('btn-left')
 const btnRight = document.getElementById('btn-right')
 const btnDown = document.getElementById('btn-down')
-const ctx = canvas.getContext('2d');
-const modal_score = document.getElementById('modal-score')
-const btnPlay = document.getElementById('btn-play');
-const modal = document.getElementById('modal')
 
-window.localStorage.setItem('game', 'play')
+//elementos del modal
+const modal_score = document.getElementById('modal-score')
+const btnPlay = document.getElementById('btn-play')
+const modal = document.getElementById('modal')
+window.localStorage.setItem('game', 'stop')
+
+//form
+const form = document.getElementById('form')
+const inputUserName = document.getElementById('inputUserName')
+const inputPassword = document.getElementById('inputPassword')
+const error_userName = document.getElementById('error_userName')
+const error_password = document.getElementById('error_password')
+const error ={
+  'error_userName':true,
+  'error_password':true
+}
+import { validateUserName,validatePassword,singUpPlayer} from "./form.js";
+import {getRankingPlayers, updateRecordPlayer} from './ranking.js'
+inputUserName.addEventListener('keyup',(e)=>{
+  validateUserName(e.target.value)
+  .then(res => {
+    error_userName.classList.replace('error_message','message_succeful');
+    error_userName.innerHTML = res
+    error.error_userName = false
+  })
+  .catch(e => {
+    error_userName.classList.replace('message_succeful', 'error_message');
+    error_userName.innerHTML = e
+    error.error_userName = true
+  })
+
+})
+inputPassword.addEventListener('keyup',(e)=>{
+  validatePassword(e.target.value)
+  .then(res => {
+    error_password.classList.replace('error_message','message_succeful');
+    error_password.innerHTML = res
+    error.error_password = false
+  })
+  .catch(e =>{
+    error_password.classList.replace('message_succeful', 'error_message');
+    error_password.innerHTML = e
+    error.error_password = true
+  })
+})
+
+form.addEventListener('submit',(e)=>{
+  e.preventDefault()
+  if(error.error_userName || error.error_password){
+    return
+  }
+  singUpPlayer(inputUserName.value,inputPassword.value)
+  return 
+})
+//create the context 
+const ctx = canvas.getContext('2d');
 // Variables de los controles
 let nextDirection = ''
 // Inicializamos el tamaño de cada cuadro de la pantalla
@@ -43,6 +95,8 @@ function resetGame() {
   ];
   nextDirection = '';
   window.localStorage.setItem('game','play')
+  drawApple(true)
+  gameLoop()
 }
 function snakeEating() {
   const head = { ...snake[0] };
@@ -67,12 +121,15 @@ function snakeEating() {
 }
 
 function drawApple(calculatePosition = false) {
-  if (snakeEating() || calculatePosition) {
+  let eatingApple = snakeEating()
+  if (eatingApple || calculatePosition) {
     const random_x = Math.floor((Math.random()) * BLOCK_WIDTH);
     const random_y = Math.floor((Math.random()) * BLOCK_HEIGHT);
     apple.x = random_x;
     apple.y = random_y
-    apple.count++
+  }
+  if(eatingApple){
+    apple.count ++
   }
   ctx.beginPath()//indicamos que vamos a comenzar a dibujar
   ctx.fillStyle = '#6f7c41'
@@ -149,7 +206,7 @@ function initialEvents() {
   document.addEventListener('keydown', handleKeyDown);
   btnPlay.addEventListener('click', () => {
     modal.classList.add('not-active');
-    window.localStorage.setItem('score', 0)
+    apple.count = 0
     window.localStorage.setItem('game','refresh')
   });
 }
@@ -183,11 +240,10 @@ function snakeMovement() {
     snakeRuning = true;
   }
   if (headCollapse || !snakeRuning) {
+    updateRecordPlayer(apple.count)
     modal.classList.remove('not-active')
     removeButtonEvents()
     modal_score.innerHTML = "Score: " + apple.count
-    window.localStorage.setItem('game', 'stop')
-    return
   }
   if (!snakeEating()) {
     snake.unshift(head);
@@ -203,7 +259,6 @@ function draw() {
   if (nextDirection) {
     snakeMovement();
   }
-
 }
 
 function gameLoop() {
@@ -218,8 +273,6 @@ setInterval(() => {
   }
   if (window.localStorage.getItem('game') == 'refresh') {
     resetGame()
-    drawApple(true)
-    gameLoop()
   }
   initialEvents()
 }, 100)

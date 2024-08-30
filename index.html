@@ -14,7 +14,22 @@
 
 <body>
   <div class="container">
-    <span id="punctuation" class="punctuation" ></span>
+    <div class="container-form-register" id="container_form">
+      <form class="form-register" id="form">
+        <div class="form-register-container">
+          <label for="inputUserName">Username:</label>
+          <input placeholder="player1" type="text" name="inputUserName" id="inputUserName">
+          <span class="error_message" id="error_userName"></span>
+        </div>
+        <div class="form-register-container">
+          <label for="inputPassword">Password</label>
+          <input placeholder="******" type="password" name="inputPassword" id="inputPassword">
+          <span class="error_message" id="error_password"></span>
+        </div>
+        <input type="submit" value="play" class="button-submit">
+      </form>
+    </div>
+    <span id="punctuation" class="punctuation"></span>
     <canvas></canvas>
     <div class="container-buttons">
       <div class="btn-up btn" id="btn-up">
@@ -25,7 +40,7 @@
           <span class="arrow arrow-left">></span>
         </div>
         <div class="btn-right btn" id="btn-right">
-          <span class="arrow ">></span> 
+          <span class="arrow ">></span>
         </div>
       </div>
       <div class="btn-down btn" id="btn-down">
@@ -34,7 +49,10 @@
     </div>
     <div id="modal" class="container_modal not-active">
       <div class="modal">
-        
+        <span class="modal-players">Players</span>
+        <ul class="modal-ranking-players" id="ranking">
+         
+        </ul>
         <span id="modal-score" class="modal-score">Score <br></span>
         <button id="btn-play" class="button-play">PLAY</button>
       </div>
